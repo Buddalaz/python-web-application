@@ -47,6 +47,17 @@ def cal_prism2(area_of_base, height):
     v = int(area_of_base)*int(height)
     return f"{v}"
 
+# send json response
+# http://127.0.0.1:5000/json_res/10/2
+@app.route("/json_res/<area_of_base>/<height>")
+def send_json_resp(area_of_base, height):
+    v = int(area_of_base)*int(height)
+    response_data = {
+        "result": v
+    }
+    print(type(response_data)) #<class 'dict'>
+    return response_data
+
 
 print(app_scope)
 
