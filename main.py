@@ -67,6 +67,8 @@ def view():
     return "<h1>Hello World</h1>"
 
 # second method access root .html files and pass it as response
+
+
 @app.route("/view_index")
 def view_from_file():
     # response_view = open("index.html").read() access root .html files
@@ -77,6 +79,24 @@ def view_from_file():
 @app.route("/view_index2")
 def view_from_file2():
     return render_template("index.html")
+
+
+# replacing html file content with file opening
+@app.route("/view_index3")
+def view_from_file3():
+    name = request.args["name"]
+    age = request.args["age"]
+    response_view = open("templates/index.html").read()
+    response_view = response_view.replace("{{name}}", name)
+    response_view = response_view.replace("{{age}}", age)
+    return response_view
+
+# replacing html file content with Flask renderTeamplate
+@app.route("/view_index4")
+def view_from_file4():
+    name = request.args["name"]
+    age = request.args["age"]
+    return render_template("index.html",name=name,age=age)
 
 
 print(app_scope)
