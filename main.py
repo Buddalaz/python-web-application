@@ -41,6 +41,13 @@ def cal_prism():
     return f"{v}"
 
 
+# http://127.0.0.1:5000/prism2/10/2
+@app.route("/prism2/<area_of_base>/<height>")  # path parameters
+def cal_prism2(area_of_base, height):
+    v = int(area_of_base)*int(height)
+    return f"{v}"
+
+
 print(app_scope)
 
 if __name__ == "__main__":
