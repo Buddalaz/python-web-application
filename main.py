@@ -27,9 +27,18 @@ def calc():
     number_one = request.args["number_1"]
     number_two = request.args["number_2"]
 
-    result = int(number_one)+int(number_two) #addition of incoming request string values and convert to integer and return the sum 
+    # addition of incoming request string values and convert to integer and return the sum
+    result = int(number_one)+int(number_two)
 
-    return f"{result}" # we can't pass directly the int value
+    return f"{result}"  # we can't pass directly the int value
+
+
+@app.route("/prism")  # http://127.0.0.1:5000/prism?area_of_base=10&height=5
+def cal_prism():
+    b = request.args["area_of_base"]
+    h = request.args["height"]
+    v = int(b)*int(h)
+    return f"{v}"
 
 
 print(app_scope)
