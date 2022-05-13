@@ -76,6 +76,8 @@ def view_from_file():
     return response_view
 
 # thired method is we can use inbuild render_template in Flask to pass .html file as response in the templates folder
+
+
 @app.route("/view_index2")
 def view_from_file2():
     return render_template("index.html")
@@ -92,11 +94,39 @@ def view_from_file3():
     return response_view
 
 # replacing html file content with Flask renderTeamplate
+
+
 @app.route("/view_index4")
 def view_from_file4():
     name = request.args["name"]
     age = request.args["age"]
-    return render_template("index.html",name=name,age=age)
+    return render_template("index.html", name=name, age=age)
+
+# get value from form post method ekata deafult allow karanne nahh save button eka click karama get eke wage
+# api kiyanna ona mona method ekada ganna ona kiyala
+# capital simple unata kamak nahh
+@app.route("/view_index5", methods=["GET", "POST"])
+def view_from_file5():
+
+    # print(request.method)  # can access what method is requesting
+
+    name = "Empty"
+    age = "Empty"
+
+    # if request.method == "POST":
+    #     print(request.form) # get form data
+    #     if "name" in request.args:
+    #         name = request.args["name"]
+    #     if "age" in request.args:
+    #         age = request.args["age"]
+
+    if request.method == "POST":
+        if "name" in request.form:
+            name = request.form["name"]
+        if "age" in request.form:
+            age = request.form["age"]
+
+    return render_template("index.html", name=name, age=age)
 
 
 print(app_scope)
